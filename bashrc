@@ -117,8 +117,5 @@ fi
 # z
 . $HOME/src/z/z.sh
 
-# my aliases
-. $HOME/src/dotfiles/bash_aliases
-
 # vim shit
 export VIM_VIKI_HOME=$HOME/Dropbox/Briefcase/viki

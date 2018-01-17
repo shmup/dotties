@@ -23,3 +23,6 @@ alias gsh='g stash'
 alias pbr='gpr'
 alias gr='g recent'
 alias gbl='g for-each-ref --sort=-committerdate refs/heads/'
+
+# dropbox
+alias ds='dropbox status'
