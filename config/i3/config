@@ -6,7 +6,6 @@ exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelt
 
 font pango:monospace 8
 
-
 # pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
@@ -22,11 +21,15 @@ bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 # Use Mouse+$mod to drag floating windows to their wankkkted position
 floating_modifier $mod
 
-# start a terminal
+# piss out a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
+bindsym ctrl+q kill
+
+# lock and suspend
+bindsym $mod+Control+l exec i3lock -ti ~/.lock.png
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
@@ -39,6 +42,15 @@ bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
+
+bindsym $mod+Tab focus up
+bindsym $mod+Shift+Tab focus down
+
+# trackpad
+exec xinput --set-prop --type=int --format=8 "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
+exec xinput --set-prop --type=int --format=8 "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
+
+# bindsym Control+Tab focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -146,4 +158,15 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
         # tray_output primary
+colors {
+  background #222222
+  statusline #eeeeee
+  separator #666666
+  #                  border  backgr. text
+  focused_workspace  #4c7899 #285577 #ffffff
+  active_workspace   #333333 #5f676a #ffffff
+  inactive_workspace #333333 #222222 #888888
+  urgent_workspace   #2f343a #900000 #ffffff
 }
+}
+
