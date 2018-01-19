@@ -6,6 +6,9 @@ exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelt
 
 font pango:monospace 8
 
+# wireless shit
+exec --no-startup-id nm-applet
+
 # pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
@@ -45,6 +48,7 @@ bindsym $mod+l focus right
 
 bindsym $mod+Tab focus up
 bindsym $mod+Shift+Tab focus down
+bindsym F1 focus down
 
 # trackpad
 exec xinput --set-prop --type=int --format=8 "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
