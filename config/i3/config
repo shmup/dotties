@@ -182,21 +182,29 @@ bindsym $mod+r mode "resize"
 #     }
 # }
 
+set $screaming_green #4AFF33
+set $gray1 #4A4A4A
+
 bar {
   position top
   separator_symbol "  "
   status_command i3status
   colors {
     background #222222
-    statusline #4AFF33 # neon green
-    separator #4AFF33
+    statusline $screaming_green
+    separator $screaming_green
 
     #                  border  bg      text
-    focused_workspace  #4AFF33 #4AFF33 #000000
-    active_workspace   #222222 #222222 #4AFF33
-    inactive_workspace #222222 #222222 #4AFF33
+    focused_workspace  $screaming_green $screaming_green #000000
+    active_workspace   #222222 #222222 $screaming_green
+    inactive_workspace #222222 #222222 $screaming_green
     urgent_workspace   #2f343a #900000 #ffffff
    }
   status_command i3status -c $HOME/src/dotties/i3status.conf
 }
 
+#                       border  bg      text    child border
+client.focused          $gray1 $gray1 #ffffff #2e9ef4
+client.focused_inactive #333333 #5f676a #ffffff #484e50
+client.unfocused        #333333 #222222 #888888 #292d2e
+client.urgent           #2f343a #900000 #ffffff #900000
