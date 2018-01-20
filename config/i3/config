@@ -1,3 +1,6 @@
+# colors
+exec --no-startup-id xsetroot -solid "#333333"
+
 # win key
 set $mod Mod4
 
@@ -8,6 +11,10 @@ font pango:monospace 8
 
 # wireless shit
 exec --no-startup-id nm-applet
+
+# power rmanagement
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+exec_always --no-startup-id gnome-power-manager
 
 # pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -159,18 +166,37 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+# bar {
+#   position top
+#   status_command i3status
+# # tray_output primary
+#     colors {
+#       background #222222
+#         statusline #eeeeee
+#         separator #666666
+# #                  border  backgr. text
+#         focused_workspace  #4c7899 #285577 #ffffff
+#         active_workspace   #333333 #5f676a #ffffff
+#         inactive_workspace #333333 #222222 #888888
+#         urgent_workspace   #2f343a #900000 #ffffff
+#     }
+# }
+
 bar {
-        status_command i3status
-        # tray_output primary
-colors {
-  background #222222
-  statusline #eeeeee
-  separator #666666
-  #                  border  backgr. text
-  focused_workspace  #4c7899 #285577 #ffffff
-  active_workspace   #333333 #5f676a #ffffff
-  inactive_workspace #333333 #222222 #888888
-  urgent_workspace   #2f343a #900000 #ffffff
-}
+  position top
+  separator_symbol "  "
+  status_command i3status
+  colors {
+    background #222222
+    statusline #4AFF33 # neon green
+    separator #4AFF33
+
+    #                  border  bg      text
+    focused_workspace  #4AFF33 #4AFF33 #000000
+    active_workspace   #222222 #222222 #4AFF33
+    inactive_workspace #222222 #222222 #4AFF33
+    urgent_workspace   #2f343a #900000 #ffffff
+   }
+  status_command i3status -c $HOME/src/dotties/i3status.conf
 }
 

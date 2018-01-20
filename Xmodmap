@@ -19,5 +19,5 @@ keycode 245 = F10
 keycode 67 = XF86AudioMute
 keycode 68 = XF86AudioLowerVolume 
 keycode 69 = XF86AudioRaiseVolume 
-keycode 71 = XF86MonBrightnessUp 
-keycode 72 = XF86MonBrightnessDown 
+keycode 71 = XF86MonBrightnessDown 
+keycode 72 = XF86MonBrightnessUp 
