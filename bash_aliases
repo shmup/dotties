@@ -1,3 +1,9 @@
+#!/bin/sh
+
+if [ -f ~/.ns1_aliases ]; then
+    . ~/.ns1_aliases
+fi
+
 # git
 alias g='git'
 alias gb='g branch'
@@ -23,6 +29,10 @@ alias gsh='g stash'
 alias pbr='gpr'
 alias gr='g recent'
 alias gbl='g for-each-ref --sort=-committerdate refs/heads/'
+
+# tmux
+alias ns1='tmux a -dt ns1 || tmux -s ns1'
+alias unf='tmux a -dt unf || tmux -s unf'
 
 # dropbox
 alias ds='dropbox status'
