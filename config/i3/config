@@ -189,3 +189,17 @@ client.focused          $gray2 $gray2 #ffffff #2e9ef4
 client.unfocused        $gray1 $gray1 #888888 #292d2e
 client.urgent           $screaming_pink $screaming_pink #000000 $screaming_pink
 # client.focused_inactive #gray2 #5f676a #ffffff #484e50
+
+# custom variables for workspace PROGNAME=`basename "$0"`
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+
+assign [class="Firefox"] $ws3
+assign [class="Google-chrome"] $ws2

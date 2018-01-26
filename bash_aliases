@@ -31,8 +31,17 @@ alias gr='g recent'
 alias gbl='g for-each-ref --sort=-committerdate refs/heads/'
 
 # tmux
-alias ns1='tmux a -dt ns1 || tmux -s ns1'
-alias unf='tmux a -dt unf || tmux -s unf'
+alias ns1='tmux a -dt ns1 || tmux new -s ns1'
+alias unf='tmux a -dt unf || tmux new -s unf'
+
+# alias test="tmux new-session \; \
+#   send-keys 'tail -f /var/log/monitor.log' C-m \; \
+#   split-window -v -p 75 \; \
+#   split-window -h -p 30 \; \
+#   send-keys 'top' C-m \; \
+#   select-pane -t 1 \; \
+#   split-window -v \; \
+#   send-keys 'weechat' C-m \;"
 
 # dropbox
 alias ds='dropbox status'

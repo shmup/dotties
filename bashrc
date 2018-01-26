@@ -6,16 +6,12 @@ case $- in
       *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# fuck it we're in 2018
-unset HISTSIZE 
-unset HISTFILESIZE
-shopt -s histappend
+HISTCONTROL=ignoreboth:erasedups             # no duplicate entries
+HISTSIZE=100000                              # big big history
+HISTFILESIZE=100000                          # big big history
+HISTTIMEFORMAT="[%F %T] "
+shopt -s histappend                          # append to history, don't overwrite it
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND" # force write every command to history
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
