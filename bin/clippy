@@ -1,59 +1,53 @@
 #!/bin/bash
 
-function get_clipboard_content {
-	xclip -selection c -o
-}
+# requirements
+if ! type xclip &> /dev/null; then echo "Install xclip"; exit 1; fi 
+if ! type xdg-open &> /dev/null; then echo "Install xdg-utils, yo (missing xdg-open)"; exit 1; fi
+if ! type gnome-screenshot &> /dev/null; then echo "Install gnome-utils, yo (gnome-screenshot)"; exit 1; fi
 
-function upload_pastie {
-	local lang="plain_text"
-	local content=$(get_clipboard_content)
-	local private=1
-	local auth="burger"
-	url=$(curl -X POST http://pastie.org/pastes \
-	    -F "paste[parser_id]=$lang" \
-	    -F "paste[body]=$content" \
-	    -F "paste[restricted]=$private" \
-	    -F "paste[authorization]=$auth" \
-	    -s -L -o /dev/null -w "%{url_effective}")
-	echo "$url" | xclip -selection c
-	nohup xdg-open "$url" > nohup.out 2>&1
+# change this shit, maybe
+TMP_DIR="$HOME/tmp/clippy/"
+TMP_SCREENSHOT="${TMP_DIR}screenshot.png"
+
+mkdir -p "$TMP_DIR"
+
+function get_clipboard_content {
+    xclip -selection c -o
 }
 
 function upload_imgur {
-	local client_id="550953eefa6bdbd"
-	curl -X POST https://api.imgur.com/3/upload \
-		-H "Authorization: Client-ID $client_id" \
-		-F "image=@$1"
+    local client_id="550953eefa6bdbd"
+    curl -X POST https://api.imgur.com/3/upload \
+        -H "Authorization: Client-ID $client_id" \
+        -F "image=@$1"
 }
 
 function get_imgur_id {
-	echo "$1" | grep -o -P '(?<="id":").*?(?=",)'
+    echo "$1" | grep -o -P '(?<="id":").*?(?=",)'
 }
 
 function imgur_process {
-	local json_output=$(upload_imgur $2)
-	local imgur_id=$(get_imgur_id $json_output)
-	local renamed="$1$imgur_id.png"
-	local url="http://i.imgur.com/$imgur_id.png"
-	mv $2 $renamed
-	echo "$url" | xclip -selection c
-	nohup xdg-open "$url" > nohup.out 2>&1
+    local json_output=$(upload_imgur $2)
+    local imgur_id=$(get_imgur_id $json_output)
+    local renamed="$1$imgur_id.png"
+    local url="http://i.imgur.com/$imgur_id.png"
+    mv $2 $renamed
+    echo "$url" | xclip -selection c
+    nohup xdg-open "$url" > nohup.out 2>&1
 }
 
-if [ "$1" = "-p" ]; then
-	upload_pastie
+if [ "$1" = "-a" ]; then # all
+    gnome-screenshot -f $TMP_SCREENSHOT
+elif [ "$1" = "-w" ]; then # window
+    gnome-screenshot -w -f $TMP_SCREENSHOT
+elif [ "$1" = "-s" ]; then # selection
+    gnome-screenshot -a -f $TMP_SCREENSHOT
 else
-	tmp_dir="/tmp/clippy/"
-	tmp_screenshot="${tmp_dir}screenshot.png"
-	mkdir -p "$tmp_dir"
-	if [ "$1" = "-s" ]; then
-		gnome-screenshot -f $tmp_screenshot
-	elif [ "$1" = "-w" ]; then
-		gnome-screenshot -w -f $tmp_screenshot
-	elif [ "$1" = "-a" ]; then
-		gnome-screenshot -a -f $tmp_screenshot
-	fi
-	if [ -f $tmp_screenshot ]; then
-		imgur_process $tmp_dir $tmp_screenshot
-	fi
+    echo "usage:
+    -a    everything
+    -s    selection
+    -w    window"
+fi
+if [ -f $TMP_SCREENSHOT ]; then
+    imgur_process $TMP_DIR $TMP_SCREENSHOT
 fi
