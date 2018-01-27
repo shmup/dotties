@@ -7,6 +7,8 @@ fi
 # git
 alias g='git'
 alias gb='g branch'
+alias gap='git add -p'
+alias gcv='git commit -v'
 alias gc='g checkout'
 alias gcfs='gc feature/Sprunt'
 alias gcl='gc -'
