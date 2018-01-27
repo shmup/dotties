@@ -11,10 +11,6 @@ TMP_SCREENSHOT="${TMP_DIR}screenshot.png"
 
 mkdir -p "$TMP_DIR"
 
-function get_clipboard_content {
-    xclip -selection c -o
-}
-
 function upload_imgur {
     local client_id="550953eefa6bdbd"
     curl -X POST https://api.imgur.com/3/upload \

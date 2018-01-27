@@ -4,6 +4,9 @@ exec --no-startup-id xsetroot -solid "#333333"
 # win key
 set $mod Mod4
 
+bindsym Control+Shift+4 exec clippy -a
+bindsym Control+Shift+3 exec clippy -w
+
 # natural scrolling
 exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelta=-111
 
