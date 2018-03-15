@@ -4,12 +4,22 @@ if [ -f ~/.ns1_aliases ]; then
     . ~/.ns1_aliases
 fi
 
+alias o='xdg-open "$@" 2>/dev/null'
+alias resume='vim -S $HOME/vim_sessions/$(ls $HOME/vim_sessions | fzy)'
+
+alias vim2='vim -u ~/src/vim-python/vimrc'
+
+alias findpid="ps axww -o pid,user,%cpu,%mem,start,time,command | fzy | sed 's/^ *//' | cut -f1 -d' '"
+
+alias clear_vim_swp="rm ~/.vim/junk/swp/*"
+
 # git
 alias g='git'
 alias gb='g branch'
 alias gap='git add -p'
 alias gcv='git commit -v'
 alias gc='g checkout'
+alias gcheck='git branch | cut -c 3- | fzy | xargs git checkout'
 alias gcfs='gc feature/Sprunt'
 alias gcl='gc -'
 alias gd='g diff'
@@ -28,13 +38,16 @@ alias gs='g status'
 alias gsa='g submodule add'
 alias gsd='g submodule deinit'
 alias gsh='g stash'
+alias gsp='g stash pop'
 alias pbr='gpr'
 alias gr='g recent'
 alias gbl='g for-each-ref --sort=-committerdate refs/heads/'
+alias src='source env/bin/activate'
 
 # tmux
 alias ns1='tmux a -dt ns1 || tmux new -s ns1'
 alias unf='tmux a -dt unf || tmux new -s unf'
+alias scratch='tmux a -dt scratch || tmux new -s scratch'
 
 # alias test="tmux new-session \; \
 #   send-keys 'tail -f /var/log/monitor.log' C-m \; \
@@ -47,3 +60,5 @@ alias unf='tmux a -dt unf || tmux new -s unf'
 
 # dropbox
 alias ds='dropbox status'
+
+alias share='sudo /home/jared/bin/quark -h 192.168.0.109 -p 7448 -d $PWD'

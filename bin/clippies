@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# only need xclip if you want imgur url shoved in your clipboard
+# only need xdg-open if you want imgur url to auto-open in browser
+
 # requirements
 if ! type xclip &> /dev/null; then echo "Install xclip"; exit 1; fi 
 if ! type xdg-open &> /dev/null; then echo "Install xdg-utils, yo (missing xdg-open)"; exit 1; fi

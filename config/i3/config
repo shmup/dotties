@@ -1,12 +1,20 @@
 # colors
-exec --no-startup-id xsetroot -solid "#333333"
+# exec --no-startup-id xsetroot -solid "#333333"
+# exec --no-startup-id feh --bg-scale /home/jared/Pictures/palms.jpg
+exec --no-startup-id feh --bg-scale /home/jared/Pictures/wallpaper/jupiter.jpg
+
+workspace_layout stacking
+
+bindsym $mod+z split horizontal, layout stacking
+
+bindsym $mod+n exec --no-startup-id focus-next-visible.py
 
 # win key
 set $mod Mod4
 
-bindsym Control+Shift+4 exec clippy -a
-bindsym Control+Shift+3 exec clippy -w
-
+bindsym Control+Shift+4 exec clippies -s
+bindsym Control+Shift+3 exec clippies -a
+ 
 # natural scrolling
 exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelta=-111
 
@@ -58,8 +66,7 @@ bindsym $mod+Shift+Tab focus down
 bindsym F1 focus down
 
 # trackpad
-exec xinput --set-prop --type=int --format=8 "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
-exec xinput --set-prop --type=int --format=8 "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
+exec /home/jared/bin/fix_trackpad.sh
 
 # bindsym Control+Tab focus right
 
@@ -70,9 +77,9 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+j move left
 bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:

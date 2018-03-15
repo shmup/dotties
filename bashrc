@@ -6,16 +6,30 @@ case $- in
       *) return;;
 esac
 
-HISTCONTROL=ignoreboth:erasedups             # no duplicate entries
+export VISUAL=vim;
+
+export PYTHONSTARTUP=~/.pythonrc
+
 HISTSIZE=100000                              # big big history
-HISTFILESIZE=100000                          # big big history
+HISTFILESIZE=100000                         # big big history
+HISTCONTROL=ignoreboth:erasedups            # no duplicate entries
+shopt -s histappend                         # append to history, don't overwrite it
+PROMPT_COMMAND="history -n;$PROMPT_COMMAND" # force write every command to history
+# PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 HISTTIMEFORMAT="[%F %T] "
-shopt -s histappend                          # append to history, don't overwrite it
-PROMPT_COMMAND="history -a; $PROMPT_COMMAND" # force write every command to history
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+# PROCESSING
+export PATH=$HOME/Downloads/processing-3.3.6:$PATH
+# RACKET
+export PATH=$HOME/.racket/bin:$PATH
+
+# GO
+export GOPATH=$HOME/src/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -101,6 +115,10 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
+
 # ns1
 if [ -f ~/.ns1rc ]; then
     . ~/.ns1rc
@@ -118,6 +136,8 @@ if ! shopt -oq posix; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# bind '"\C-r": reverse-search-history'
+
 
 # z
 . $HOME/src/z/z.sh
