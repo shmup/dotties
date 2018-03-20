@@ -1,3 +1,9 @@
+# press 8 to show diffs in merge commits (focus it first with <return>)
 bind diff 8 !git diff %(commit)^ %(commit)
+
+# press 9 to copy the commit hash to clipboard (pbcopy if you're a macos lord)
 bind generic 9 !@sh -c "echo -n %(commit) | xclip -selection c"
 
+# press 0 to append the commit hash to $HOME/tmp/cherrypicks
+# useful when building a list of shit to cherry-pick
+bind generic 0 !@sh -c "echo %(commit) >> $HOME/tmp/cherypicks"
