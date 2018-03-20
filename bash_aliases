@@ -4,6 +4,8 @@ if [ -f ~/.ns1_aliases ]; then
     . ~/.ns1_aliases
 fi
 
+alias makegraph='make -Bnd | make2graph | dot -Tpng -o $HOME/tmp/out.png && o $HOME/tmp/out.png'
+
 alias o='xdg-open "$@" 2>/dev/null'
 alias resume='vim -S $HOME/vim_sessions/$(ls $HOME/vim_sessions | fzy)'
 

@@ -1,1 +1,3 @@
+bind diff 8 !git diff %(commit)^ %(commit)
 bind generic 9 !@sh -c "echo -n %(commit) | xclip -selection c"
+
