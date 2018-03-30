@@ -1,13 +1,11 @@
 #!/bin/sh
 
-if [ -f ~/.ns1_aliases ]; then
-    . ~/.ns1_aliases
-fi
+alias vimmies='/home/jared/.vim/vimmies'
 
 alias makegraph='make -Bnd | make2graph | dot -Tpng -o $HOME/tmp/out.png && o $HOME/tmp/out.png'
 
 alias o='xdg-open "$@" 2>/dev/null'
-alias resume='vim -S $HOME/vim_sessions/$(ls $HOME/vim_sessions | fzy)'
+alias resume='vim -S $HOME/.vim_sessions/$(ls $HOME/.vim_sessions | fzy)'
 
 alias vim2='vim -u ~/src/vim-python/vimrc'
 
@@ -21,7 +19,7 @@ alias gb='g branch'
 alias gap='git add -p'
 alias gcv='git commit -v'
 alias gc='g checkout'
-alias gcheck='git branch | cut -c 3- | fzy | xargs git checkout'
+alias gcheck='git branch | cut -c 3- | fzy -l 100 | xargs git checkout'
 alias gcfs='gc feature/Sprunt'
 alias gcl='gc -'
 alias gd='g diff'
@@ -45,6 +43,9 @@ alias pbr='gpr'
 alias gr='g recent'
 alias gbl='g for-each-ref --sort=-committerdate refs/heads/'
 alias src='source env/bin/activate'
+
+alias recent="!r(){git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)'|column -ts'|'}; r"
+alias tmate_copy="tmate show-messages | grep 'ssh session:' | awk '{print \"ssh \"\$NF}' | xclip -selection c"
 
 # tmux
 alias ns1='tmux a -dt ns1 || tmux new -s ns1'

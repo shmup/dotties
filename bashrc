@@ -31,6 +31,8 @@ export PATH=$HOME/.racket/bin:$PATH
 export GOPATH=$HOME/src/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
+. ~/.dont_commit
+
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
