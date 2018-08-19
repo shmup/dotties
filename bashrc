@@ -12,11 +12,11 @@ export PYTHONSTARTUP=~/.pythonrc
 
 HISTSIZE=100000                              # big big history
 HISTFILESIZE=100000                         # big big history
-HISTCONTROL=ignoreboth:erasedups            # no duplicate entries
-shopt -s histappend                         # append to history, don't overwrite it
-PROMPT_COMMAND="history -n;$PROMPT_COMMAND" # force write every command to history
+# HISTCONTROL=ignoreboth:erasedups            # no duplicate entries
+# shopt -s histappend                         # append to history, don't overwrite it
+# PROMPT_COMMAND="history -n;$PROMPT_COMMAND" # force write every command to history
 # PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
-HISTTIMEFORMAT="[%F %T] "
+# HISTTIMEFORMAT="[%F %T] "
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -24,8 +24,12 @@ shopt -s checkwinsize
 
 # PROCESSING
 export PATH=$HOME/Downloads/processing-3.3.6:$PATH
-# RACKET
+# NIM
+export PATH=$HOME/.nimble/bin:$PATH
 export PATH=$HOME/.racket/bin:$PATH
+
+# dasht
+export PATH=$HOME/src/dasht/bin:$PATH
 
 # GO
 export GOPATH=$HOME/src/go
@@ -106,7 +110,6 @@ alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # python shit
 # export WORKON_HOME=$HOME/.virtualenvs
@@ -153,3 +156,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 alias crawl="ssh -i /home/jared/.ssh/cbro_key crawler@crawl.berotato.org"
+
+
+# Source goto
+[[ -s "/usr/local/share/goto.sh" ]] && source /usr/local/share/goto.sh
+

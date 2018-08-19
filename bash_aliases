@@ -1,6 +1,25 @@
-#!/bin/sh
+#!/bin/bash
+
+RESET="\033[0m"
+BOLD="\033[1m"
+RED="\033[31;5;11m"
+
+function xr1 {
+  xrandr --auto
+  i3-msg '[class=".*"]' move workspace to output eDP-1
+}
+
+alias xr2='xrandr --output HDMI-1 --primary --mode 2560x1440 --left-of eDP-1 && fix_keyboard.sh'
+alias xrgarage='xrandr --output HDMI-1 --primary --mode 1920x1080 --above eDP-1'
 
 alias vimmies='/home/jared/.vim/vimmies'
+
+alias spacestation='somaruby play spacestation'
+alias dronezone='somaruby play dronezone'
+alias cliqhop='somaruby play cliqhop'
+alias deepspaceone='somaruby play deepspaceone'
+
+alias c='clear'
 
 alias makegraph='make -Bnd | make2graph | dot -Tpng -o $HOME/tmp/out.png && o $HOME/tmp/out.png'
 
@@ -12,6 +31,11 @@ alias vim2='vim -u ~/src/vim-python/vimrc'
 alias findpid="ps axww -o pid,user,%cpu,%mem,start,time,command | fzy | sed 's/^ *//' | cut -f1 -d' '"
 
 alias clear_vim_swp="rm ~/.vim/junk/swp/*"
+
+# docker
+alias dps='docker ps'
+
+alias record='bash <(curl record.showterm.io)'
 
 # git
 alias g='git'
@@ -42,7 +66,8 @@ alias gsp='g stash pop'
 alias pbr='gpr'
 alias gr='g recent'
 alias gbl='g for-each-ref --sort=-committerdate refs/heads/'
-alias src='source env/bin/activate'
+alias src='source .env/bin/activate'
+alias gbd='delete_branch'
 
 alias recent="!r(){git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)'|column -ts'|'}; r"
 alias tmate_copy="tmate show-messages | grep 'ssh session:' | awk '{print \"ssh \"\$NF}' | xclip -selection c"
@@ -51,6 +76,8 @@ alias tmate_copy="tmate show-messages | grep 'ssh session:' | awk '{print \"ssh 
 alias ns1='tmux a -dt ns1 || tmux new -s ns1'
 alias unf='tmux a -dt unf || tmux new -s unf'
 alias scratch='tmux a -dt scratch || tmux new -s scratch'
+alias britt="curl -v --silent  https://chaturbate.com/nixon_b/ 2>&1 | grep 'room_status' | xargs"
+alias diggybois="/home/jared/Games/df_linux_44_09/df &>/dev/null &"
 
 # alias test="tmux new-session \; \
 #   send-keys 'tail -f /var/log/monitor.log' C-m \; \

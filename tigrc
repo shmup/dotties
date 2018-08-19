@@ -6,4 +6,4 @@ bind generic 9 !@sh -c "echo -n %(commit) | xclip -selection c"
 
 # press 0 to append the commit hash to $HOME/tmp/cherrypicks
 # useful when building a list of shit to cherry-pick
-bind generic 0 !@sh -c "echo %(commit) >> $HOME/tmp/cherypicks"
+bind generic 0 !@sh -c "echo git cherry-pick %(commit) >> $HOME/tmp/cherrypicks"

@@ -4,6 +4,7 @@
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	editor = vim
+        autocrlf = input
 [color]
 	ui = true
 [color "diff-highlight"]
